@@ -1,0 +1,5 @@
+{ +filter{antisocial} }
+/
+
+{ +block{Digital Restrictions Management} }
+.activate.adobe.com

@@ -1,0 +1,10 @@
+FILTER: antisocial Get rid of goddamn screen-real-estate-wasting bandwidth-wasting pageload-time-spending privacy-ruining sharing buttons
+s%<script[^<>]*google[^<>]*js/plusone\.js[^<>]*>.*></script>%<!-- Google blocked -->%Usg
+s%<iframe[^<>]*twitter[^<>]*widgets[^<>]*/\s*>%<!-- Twitter blocked -->%Usg
+s%<iframe[^<>]*twitter[^<>]*widgets[^<>]*>.*</iframe>%<!-- Twitter blocked -->%Usg
+s%<script[^<>]*platform\.twitter\.com/widgets[^<>]*/\s*>%<!-- Twitter blocked -->%Usg
+s%<script[^<>]*platform\.twitter\.com/widgets[^<>]*>.*</script>%<!-- Twitter blocked -->%Usg
+s%<fb:[^<>]*/\s*>%<!-- Facebook blocked -->%Usg
+s%<fb:[^<>]*>.*</fb:[^<>]*>%<!-- Facebook blocked -->%Usg
+#s%<iframe[^<>]*(?:facebook|fbcdn)[^<>]*/\s*>%<!-- Facebook blocked -->%Usg
+#s%<iframe[^<>]*(?:facebook|fbcdn)[^<>]*>.*</iframe>%<!-- Facebook blocked -->%Usg
