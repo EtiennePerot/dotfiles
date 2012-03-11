@@ -1,4 +1,4 @@
-directory = /home/rtorrent/torrents
+directory = /home/rtorrent/mnt/torrents
 
 http_capath = /etc/ssl/certs
 
@@ -13,5 +13,5 @@ dht = disable
 peer_exchange = no
 encryption = allow_incoming,try_outgoing,require,require_RC4
 
-schedule = watch_directory,5,5,load_start=/home/rtorrent/watch/*.torrent
-session = /home/rtorrent/session
+schedule = watch_directory,5,5,load_start=/home/rtorrent/mnt/watch/*.torrent
+session = /home/rtorrent/mnt/session
