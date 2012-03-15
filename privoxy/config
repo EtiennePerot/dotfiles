@@ -27,7 +27,7 @@ enforce-blocks 0
 buffer-limit 16384
 
 forward / localhost:8123
-forward :443 .
+forward-socks5 :443 localhost:9999 .
 forwarded-connect-retries  0
 accept-intercepted-requests 0
 
