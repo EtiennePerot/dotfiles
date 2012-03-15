@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-cd "`dirname "$0"`"
+actualFile="`readlink "$0"`"
+cd "`dirname "$actualFile"`"
 ./adblocklist.sh
 ./hosts-blacklist.py
 
