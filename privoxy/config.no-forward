@@ -1,0 +1,39 @@
+confdir /etc/privoxy
+logdir /var/log/privoxy
+
+actionsfile match-all.action
+actionsfile default.action
+actionsfile liste_fr+easylist.script.action
+actionsfile easyprivacy.script.action
+actionsfile Antisocial.script.action
+actionsfile liste_fr.script.action
+actionsfile hosts-blacklist.action
+actionsfile user.action
+
+filterfile default.filter
+filterfile liste_fr+easylist.script.filter
+filterfile easyprivacy.script.filter
+filterfile Antisocial.script.filter
+filterfile liste_fr.script.filter
+filterfile user.filter
+
+listen-address  0.0.0.0:8118
+toggle 1
+enable-remote-toggle 0
+enable-remote-http-toggle 0
+enable-edit-actions 1
+enforce-blocks 0
+
+buffer-limit 16384
+
+forwarded-connect-retries  0
+accept-intercepted-requests 0
+
+allow-cgi-request-crunching 0
+split-large-forms 0
+handle-as-empty-doc-returns-ok 1
+
+keep-alive-timeout 300
+default-server-timeout 60
+connection-sharing 1
+socket-timeout 300
