@@ -1,0 +1,8 @@
+#!/bin/sh
+
+IFS="`echo -en "\n\b"`"
+for r in `git remote show`; do
+	echo "Pushing to $r..."
+	git push --all  "$r"
+	git push --tags "$r"
+done
