@@ -1,5 +1,5 @@
 { +filter{antisocial} }
 /
 
-{ +block{Digital Restrictions Management} }
-.activate.adobe.com
+{ +forward-overide{forward .} }
+.epiceanne.blogspot.com

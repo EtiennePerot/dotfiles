@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import urllib.request, re
+import os, sys, re, urllib.request
 
 # Config part
 matchLine = re.compile(r'^(?:127.0.0.1|::1)[ \t]+(\S+)')
@@ -25,6 +25,14 @@ for hostsFile in hostsFiles:
 				isNewHost = host not in hosts
 			if isNewHost:
 				hosts.append(host)
+localFile = os.path.join(os.path.dirname(sys.argv[0], 'hosts-blacklist.txt'))
+if os.path.isfile(localFile):
+	f = open(localFile, 'rb')
+	for h in f:
+		h = h.strip()
+		if h and h not in hosts:
+			hosts.append(h)
+	f.close()
 hosts.sort()
 action = open(actionFile, 'w')
 action.write('{ +block{Matched hosts blacklist} }\n')
