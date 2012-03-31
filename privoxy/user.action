@@ -1,5 +1,5 @@
 { +filter{antisocial} }
 /
 
-{ +forward-overide{forward .} }
+{ +forward-override{forward .} }
 .epiceanne.blogspot.com

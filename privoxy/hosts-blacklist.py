@@ -25,11 +25,11 @@ for hostsFile in hostsFiles:
 				isNewHost = host not in hosts
 			if isNewHost:
 				hosts.append(host)
-localFile = os.path.join(os.path.dirname(sys.argv[0], 'hosts-blacklist.txt'))
+localFile = os.path.join(os.path.dirname(sys.argv[0]), 'hosts-blacklist.txt')
 if os.path.isfile(localFile):
 	f = open(localFile, 'rb')
 	for h in f:
-		h = h.strip()
+		h = h.strip().decode('utf8')
 		if h and h not in hosts:
 			hosts.append(h)
 	f.close()
