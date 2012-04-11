@@ -8,7 +8,7 @@ port_range = 55000-56000
 
 port_random = no
 
-use_udp_trackers = no
+use_udp_trackers = yes
 dht = disable
 peer_exchange = no
 encryption = allow_incoming,try_outgoing,require,require_RC4
