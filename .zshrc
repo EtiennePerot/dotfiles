@@ -2,12 +2,17 @@
 ZSH=$HOME/.oh-my-zsh
 
 COMPLETION_WAITING_DOTS="true"
-plugins=(ant arch compleat git github kate lol mercurial nyan pip python ssh-agent svn wakeonlan)
+plugins=(ant arch compleat git github kate lol mercurial nyan pip python svn wakeonlan)
 setopt completealiases
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.zsh_theme
 
-source $HOME/.zsh-theme
+if [ -f ~/.zsh_nocorrect ]; then
+	while read -r COMMAND; do
+		alias $COMMAND="nocorrect $COMMAND"
+	done < ~/.zsh_nocorrect
+fi
 
 alias ssh='autossh -M $(($RANDOM%10000+30000))'
 alias scp='scp -r'
