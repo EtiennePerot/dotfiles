@@ -15,11 +15,13 @@ if [ -f ~/.zsh_nocorrect ]; then
 fi
 
 alias ssh='autossh -M $(($RANDOM%10000+30000))'
+alias cp='cp -r'
 alias scp='scp -r'
 alias rsync='rsync -ru --progress'
 alias man="TERMINFO=~/.terminfo/ LESS=C TERM=mostlike PAGER=less man"
 alias rc.d='sudo rc.d'
 alias powertop2='sudo powertop2'
+alias visudo='sudo visudo'
 
 export EDITOR=nano # Don't judge me!
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
