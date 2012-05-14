@@ -1,0 +1,4 @@
+macspoof() {
+	macchanger -A wlan0
+}
+add_hook multi_start macspoof
