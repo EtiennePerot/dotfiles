@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 gpgkey="https://perot.me/pgp.asc"
-fingerprint="`wget "$gpgkey" -O- | gpg --with-fingerprint | grep "Key fingerprint"`"
+fingerprint="`gpg --export etienne@perot.me | gpg --with-fingerprint | grep "Key fingerprint"`"
 keyid="${fingerprint:${#fingerprint}-9:9}"
 sigdate="`date +'%Y-%m-%d %H:%M:%S'`"
 echo "Etienne Perot"
