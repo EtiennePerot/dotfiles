@@ -19,6 +19,10 @@ for target in "${targets[@]}"; do
 	for include in "${backupFiles[@]}"; do
 		includes=("${includes[@]}" --include "$include")
 	done
+	excludes=()
+	for exclude in "${excludedFiles[@]}"; do
+		excludes=("${excludes[@]}" --exclude "$exclude")
+	done
 	gpgArgs=''
 	for extraGpgArg in "${extraGpgArgs[@]}"; do
 		gpgArgs="$gpgArgs $extraGpgArg"
@@ -32,9 +36,10 @@ for target in "${targets[@]}"; do
 		--sign-key "$signingKey"          \
 		--full-if-older-than "$fullEvery" \
 		--volsize "$volumeSize"           \
+		--exclude "$archiveDirectory"     \
+		"${excludes[@]}"                  \
 		"${includes[@]}"                  \
 		--exclude '**'                    \
-		--exclude "$archiveDirectory"     \
 		--gpg-options="$gpgArgs"          \
 		"${extraArgs[@]}"                 \
 		/ "$target"
