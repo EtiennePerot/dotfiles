@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+        echo "Please provide the name of the repository as first argument."
+fi
+
+repoName="`echo "$1" | sed 's/\.git$//'`.git"
+
+if [ ! -d "$GL_REPO_BASE/$repoName" ]; then
+        echo "Invalid repo name provided."
+fi
+
+cd "$GL_REPO_BASE/$repoName"
+"$GL_REPO_BASE/$repoName/hooks/post-update"

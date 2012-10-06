@@ -1,8 +1,43 @@
 #!/bin/sh
 
+# Check if there is an SVN repo configured here
+if git svn info --url &> /dev/null; then
+        # Git requires a work clone to be able to push it. We need to check if it exists, and if not we need to create it (what a waste of space)
+        oldDirectory="`pwd`"
+        gitRoot="`git rev-parse --git-dir`"
+        gitRoot="`cd "$gitRoot" && pwd`"
+        gitSvnCloneRoot="$gitRoot/svn-clone"
+        gitSvnCloneGit="$gitSvnCloneRoot/.git"
+        if [ ! -d "$gitSvnCloneRoot" ]; then
+                git clone --recursive "file://$gitRoot" "$gitSvnCloneRoot"
+                cd "$gitRoot"
+                IFS=$'\n'
+                for key in `git config --get-regexp svn-remote`; do
+                        cd "$gitSvnCloneRoot"
+                        git config --local "`echo "$key" | cut -d ' ' -f 1`" "`echo "$key" | cut -d ' ' -f 2`"
+                done
+                cd "$gitSvnCloneRoot"
+                GIT_DIR="$gitSvnCloneGit" git config --local user.email "git-svn@`hostname`"
+                GIT_DIR="$gitSvnCloneGit" git config --local user.name "Git-SVN automated push"
+                GIT_DIR="$gitSvnCloneGit" git svn fetch
+                GIT_DIR="$gitSvnCloneGit" git svn rebase
+        fi
+        echo "Pushing to SVN repository..."
+        cd "$gitSvnCloneRoot"
+        GIT_DIR="$gitSvnCloneGit" git pull --no-edit
+        GIT_DIR="$gitSvnCloneGit" git svn rebase
+        GIT_DIR="$gitSvnCloneGit" git svn dcommit --find-copies-harder
+        GIT_DIR="$gitSvnCloneGit" gitolite push -f
+        cd "$oldDirectory"
+        echo '>>>> WARNING: If you only used it push, then you need to fetch and rebase to get the svn tags:'
+        echo '>>>> $ git fetch'
+        echo '>>>> $ git rebase'
+fi
+
+# Push everything to all remotes
 IFS="`echo -en "\n\b"`"
 for r in `git remote show`; do
-	echo "Pushing to $r..."
-	git push --all  "$r"
-	git push --tags "$r"
+        echo "Pushing to $r..."
+        git push -f --all  "$r"
+        git push -f --tags "$r"
 done
