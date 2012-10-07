@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export QT_PLUGIN_PATH=/home/etienne/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/
+exec /usr/bin/pinentry-qt4 -g "$@"
